@@ -260,6 +260,30 @@ struct coord {
         cout << "Please enter coordinate with each parameter seperated by space: ";
         (ptr).input();
     }
+    operator double() const {
+	    double res=1;
+	    for(di i=0; i<dim; i++) {
+		    res*=this->d[i];
+	    }
+	    return res;
+    }
+    template<typename C> operator complex<C>() const {
+	    complex<C>res=1;
+	    for(di i=0; i<dim; i++) {
+		    res*=this->d[i];
+	    }
+	    return res;
+    }
+    auto inv() const {
+	    auto res=*this;
+	    for(di i=0; i<dim; i++) res[i]=((T)1)/res[i];
+	    return res;
+    }
+    T sum() const {
+	    T res;
+	    for(di i=0; i<dim; i++) res+=this->d[i];
+	    return res;
+    }
 };
 
 template<typename G>
